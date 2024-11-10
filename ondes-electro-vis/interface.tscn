@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbg43cvidifpb"]
+
+[ext_resource type="Script" path="res://camera_controller.gd" id="1_l21o3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q48vr"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interface" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interface"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_q48vr")
+
+[node name="CameraController" type="Node3D" parent="."]
+script = ExtResource("1_l21o3")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3103)
