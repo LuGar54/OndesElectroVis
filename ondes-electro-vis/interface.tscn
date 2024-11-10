@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbg43cvidifpb"]
 
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_l21o3"]
-[ext_resource type="Material" uid="uid://ooc4d83fck1h" path="res://IncidentMat.tres" id="2_mrkfb"]
+[ext_resource type="Material" uid="uid://ooc4d83fck1h" path="res://materials/IncidentMat.tres" id="2_mrkfb"]
 [ext_resource type="Script" path="res://scripts/transmitted.gd" id="3_ebqh8"]
-[ext_resource type="Material" uid="uid://c3iyn2xnwpnxu" path="res://TransmittedMat.tres" id="3_uux5p"]
+[ext_resource type="Material" uid="uid://c3iyn2xnwpnxu" path="res://materials/TransmittedMat.tres" id="3_uux5p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quh4h"]
 transparency = 1
