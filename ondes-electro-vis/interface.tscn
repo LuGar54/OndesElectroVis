@@ -1,8 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbg43cvidifpb"]
+[gd_scene load_steps=9 format=3 uid="uid://cbg43cvidifpb"]
 
-[ext_resource type="Script" path="res://camera_controller.gd" id="1_l21o3"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_l21o3"]
+[ext_resource type="Material" uid="uid://ooc4d83fck1h" path="res://IncidentMat.tres" id="2_mrkfb"]
+[ext_resource type="Script" path="res://scripts/transmitted.gd" id="3_ebqh8"]
+[ext_resource type="Material" uid="uid://c3iyn2xnwpnxu" path="res://TransmittedMat.tres" id="3_uux5p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quh4h"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.784314)
+emission_enabled = true
+emission = Color(0.314316, 0.314316, 0.314316, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_q48vr"]
+material = SubResource("StandardMaterial3D_quh4h")
+
+[sub_resource type="BoxMesh" id="BoxMesh_n65bb"]
+material = ExtResource("2_mrkfb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_6yjg2"]
+material = ExtResource("3_uux5p")
 
 [node name="Node3D" type="Node3D"]
 
@@ -19,3 +35,16 @@ script = ExtResource("1_l21o3")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/vertical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3103)
+
+[node name="Incident" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Incident"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 2.5)
+mesh = SubResource("BoxMesh_n65bb")
+
+[node name="Transmitted" type="Node3D" parent="."]
+script = ExtResource("3_ebqh8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Transmitted"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, -2.5)
+mesh = SubResource("BoxMesh_6yjg2")
