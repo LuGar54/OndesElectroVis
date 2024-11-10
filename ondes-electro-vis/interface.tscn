@@ -1,9 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbg43cvidifpb"]
+[gd_scene load_steps=12 format=3 uid="uid://cbg43cvidifpb"]
 
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_l21o3"]
+[ext_resource type="Script" path="res://scripts/incident.gd" id="2_hojcc"]
 [ext_resource type="Material" uid="uid://ooc4d83fck1h" path="res://materials/IncidentMat.tres" id="2_mrkfb"]
 [ext_resource type="Script" path="res://scripts/transmitted.gd" id="3_ebqh8"]
 [ext_resource type="Material" uid="uid://c3iyn2xnwpnxu" path="res://materials/TransmittedMat.tres" id="3_uux5p"]
+
+[sub_resource type="Theme" id="Theme_y7a5j"]
+default_font_size = 42
+
+[sub_resource type="GDScript" id="GDScript_vn5l4"]
+script/source = "extends LineEdit
+
+var n_1: float = 1
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quh4h"]
 transparency = 1
@@ -22,6 +41,45 @@ material = ExtResource("3_uux5p")
 
 [node name="Node3D" type="Node3D"]
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_y7a5j")
+alignment = 1
+
+[node name="N1" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+placeholder_text = "N1"
+alignment = 1
+script = SubResource("GDScript_vn5l4")
+
+[node name="N2" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+placeholder_text = "N2"
+alignment = 1
+
+[node name="Angle" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "Angle"
+alignment = 1
+
 [node name="Interface" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interface"]
@@ -37,6 +95,7 @@ script = ExtResource("1_l21o3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3103)
 
 [node name="Incident" type="Node3D" parent="."]
+script = ExtResource("2_hojcc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Incident"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 2.5)
@@ -48,3 +107,8 @@ script = ExtResource("3_ebqh8")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Transmitted"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, -2.5)
 mesh = SubResource("BoxMesh_6yjg2")
+
+[connection signal="text_changed" from="PanelContainer/MarginContainer/HBoxContainer/N1" to="Transmitted" method="_on_n_1_text_changed"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/HBoxContainer/N2" to="Transmitted" method="_on_n_2_text_changed"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/HBoxContainer/Angle" to="Incident" method="_on_angle_text_changed"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/HBoxContainer/Angle" to="Transmitted" method="_on_angle_text_changed"]
