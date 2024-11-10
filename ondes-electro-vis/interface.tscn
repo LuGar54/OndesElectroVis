@@ -15,5 +15,7 @@ mesh = SubResource("BoxMesh_q48vr")
 [node name="CameraController" type="Node3D" parent="."]
 script = ExtResource("1_l21o3")
 
-[node name="Camera3D" type="Camera3D" parent="CameraController"]
+[node name="vertical" type="Node3D" parent="CameraController"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/vertical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3103)
