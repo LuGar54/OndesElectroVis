@@ -6,12 +6,9 @@ var n2: float = 1
 var angle: float = 0
 var angle2: float = 0
 
-var incident: Node3D
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	incident = $Incident
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

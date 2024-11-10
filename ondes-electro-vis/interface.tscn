@@ -80,6 +80,10 @@ layout_mode = 2
 placeholder_text = "Angle"
 alignment = 1
 
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "θc : -"
+
 [node name="Interface" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interface"]
@@ -103,6 +107,7 @@ mesh = SubResource("BoxMesh_n65bb")
 
 [node name="Transmitted" type="Node3D" parent="."]
 script = ExtResource("3_ebqh8")
+metadata/a = NodePath("../PanelContainer/MarginContainer/HBoxContainer/Label")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Transmitted"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, -2.5)
