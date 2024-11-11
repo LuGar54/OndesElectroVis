@@ -26,7 +26,7 @@ func _on_n_1_text_changed(new_text: String) -> void:
 	_calculate_angle2()
 	
 	for notify in notifyList:
-		notify._adjust_size()
+		notify._notify()
 
 
 func _on_n_2_text_changed(new_text: String) -> void:
@@ -38,7 +38,7 @@ func _on_n_2_text_changed(new_text: String) -> void:
 	_calculate_angle2()
 	
 	for notify in notifyList:
-		notify._adjust_size()
+		notify._notify()
 
 
 func _on_angle_text_changed(new_text: String) -> void:
@@ -49,7 +49,7 @@ func _on_angle_text_changed(new_text: String) -> void:
 	_calculate_angle2()
 	
 	for notify in notifyList:
-		notify._adjust_size()
+		notify._notify()
 
 func _calculate_angle2() -> void:
 	angle2 = asin(n1/n2 * sin(angle))

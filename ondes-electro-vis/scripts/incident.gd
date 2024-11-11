@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _adjust_size() -> void:
+func _notify() -> void:
 	rotation.y = interfaceController.angle
