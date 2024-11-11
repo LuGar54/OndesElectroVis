@@ -18,12 +18,13 @@ func _process(delta: float) -> void:
 
 
 func _on_n_1_text_changed(new_text: String) -> void:
-	print("allo")
 	if new_text == "":
 		n1 = 1
 	else:
 		n1 = float(new_text)
-	print(notifyList)
+		
+	_calculate_angle2()
+	
 	for notify in notifyList:
 		notify._adjust_size()
 
@@ -33,6 +34,9 @@ func _on_n_2_text_changed(new_text: String) -> void:
 		n2 = 1
 	else:
 		n2 = float(new_text)
+	
+	_calculate_angle2()
+	
 	for notify in notifyList:
 		notify._adjust_size()
 
@@ -42,6 +46,10 @@ func _on_angle_text_changed(new_text: String) -> void:
 		#new_text = "90"
 	
 	angle = deg_to_rad(float(new_text))
-	angle2 = asin(n1/n2 * sin(angle))
+	_calculate_angle2()
+	
 	for notify in notifyList:
 		notify._adjust_size()
+
+func _calculate_angle2() -> void:
+	angle2 = asin(n1/n2 * sin(angle))
