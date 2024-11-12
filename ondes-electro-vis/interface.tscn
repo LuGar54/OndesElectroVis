@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbg43cvidifpb"]
+[gd_scene load_steps=23 format=3 uid="uid://cbg43cvidifpb"]
 
 [ext_resource type="Script" path="res://scripts/interface_controller.gd" id="1_0jwpw"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_l21o3"]
@@ -6,10 +6,15 @@
 [ext_resource type="Script" path="res://scripts/angle_critique.gd" id="2_kjc5f"]
 [ext_resource type="Script" path="res://scripts/transmitted.gd" id="3_ebqh8"]
 [ext_resource type="Script" path="res://scripts/angle_brewster.gd" id="3_tbty1"]
+[ext_resource type="Script" path="res://scripts/reflection_label.gd" id="3_vybvt"]
+[ext_resource type="Script" path="res://scripts/transmission_label.gd" id="4_vnm5n"]
 [ext_resource type="Material" uid="uid://dk2667qppc6hi" path="res://materials/IncidentMat2.tres" id="6_yksp5"]
 [ext_resource type="Material" uid="uid://djm4q6drwxlxm" path="res://materials/TransmittedMat2.tres" id="8_jefhd"]
 [ext_resource type="Material" uid="uid://clxr0a3ey6roa" path="res://materials/ReflectedMat.tres" id="9_dyqg8"]
 [ext_resource type="Script" path="res://scripts/reflected.gd" id="9_pk23d"]
+
+[sub_resource type="Theme" id="Theme_anjld"]
+default_font_size = 42
 
 [sub_resource type="Theme" id="Theme_y7a5j"]
 default_font_size = 42
@@ -59,12 +64,53 @@ material = SubResource("StandardMaterial3D_week2")
 
 [node name="Node3D" type="Node3D"]
 
+[node name="TopRightPanel" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TopRightPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopRightPanel/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_anjld")
+
+[node name="Angle_Critique" type="Label" parent="TopRightPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("interfaceController")]
+layout_mode = 2
+text = "θc : -"
+script = ExtResource("2_kjc5f")
+interfaceController = NodePath("../../../../InterfaceController")
+
+[node name="Angle_Brewster" type="Label" parent="TopRightPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("interfaceController")]
+layout_mode = 2
+text = "θB : 45.00"
+script = ExtResource("3_tbty1")
+interfaceController = NodePath("../../../../InterfaceController")
+
+[node name="Reflection" type="Label" parent="TopRightPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("interfaceController")]
+layout_mode = 2
+text = "Γ : -"
+script = ExtResource("3_vybvt")
+interfaceController = NodePath("../../../../InterfaceController")
+
+[node name="Transmission" type="Label" parent="TopRightPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("interfaceController")]
+layout_mode = 2
+text = " τ : -"
+script = ExtResource("4_vnm5n")
+interfaceController = NodePath("../../../../InterfaceController")
+
 [node name="InterfaceController" type="PanelContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
+offset_top = -86.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_0jwpw")
@@ -106,18 +152,6 @@ alignment = 1
 layout_mode = 2
 placeholder_text = "Angle"
 alignment = 1
-
-[node name="Angle_Critique" type="Label" parent="InterfaceController/MarginContainer/HBoxContainer" node_paths=PackedStringArray("interfaceController")]
-layout_mode = 2
-text = "  θc : -  "
-script = ExtResource("2_kjc5f")
-interfaceController = NodePath("../../..")
-
-[node name="Angle_Brewster" type="Label" parent="InterfaceController/MarginContainer/HBoxContainer" node_paths=PackedStringArray("interfaceController")]
-layout_mode = 2
-text = "θB : 45.00"
-script = ExtResource("3_tbty1")
-interfaceController = NodePath("../../..")
 
 [node name="Interface" type="Node3D" parent="."]
 

@@ -1,4 +1,4 @@
-extends Node3D
+extends Label
 
 @export var interfaceController: InterfaceController
 
@@ -8,12 +8,4 @@ func _ready() -> void:
 
 
 func _notify() -> void:
-	if interfaceController.parallel:
-		rotation.z = 0
-	else:
-		rotation.z = PI/2
-	
-	scale.x = interfaceController.transmissionCoef
-
-	rotation.y = interfaceController.angle2
-	
+	text = str("Γ : %1.2f" % interfaceController.reflectionCoef)

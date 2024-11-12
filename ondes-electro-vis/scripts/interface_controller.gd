@@ -6,6 +6,9 @@ var angle: float = 0
 var angle2: float = 0
 var parallel: bool = true
 
+var reflectionCoef: float = 0
+var transmissionCoef: float = 1
+
 var notifyList = []
 
 
@@ -29,7 +32,7 @@ func _on_n_1_text_changed(new_text: String) -> void:
 	else:
 		n1 = float(new_text)
 		
-	_calculate_angle2()
+	_recalculate_values()
 	
 	_notify_list()
 
@@ -40,7 +43,7 @@ func _on_n_2_text_changed(new_text: String) -> void:
 	else:
 		n2 = float(new_text)
 	
-	_calculate_angle2()
+	_recalculate_values()
 	
 	_notify_list()
 
@@ -50,14 +53,21 @@ func _on_angle_text_changed(new_text: String) -> void:
 		#new_text = "90"
 	
 	angle = deg_to_rad(float(new_text))
-	_calculate_angle2()
+	_recalculate_values()
 	
 	_notify_list()
-
-func _calculate_angle2() -> void:
-	angle2 = asin(n1/n2 * sin(angle))
 
 
 func _on_option_button_item_selected(index: int) -> void:
 	parallel = index == 0
 	_notify_list()
+
+
+func _recalculate_values() -> void:
+	angle2 = asin(n1/n2 * sin(angle))
+	if parallel:	
+		reflectionCoef = (n1 * cos(angle2) - n2 * cos(angle))/(n1 * cos(angle2) + n2 * cos(angle))
+		transmissionCoef = 2 * n1 * cos(angle)/(n1 * cos(angle2) + n2 * cos(angle))
+	else:
+		reflectionCoef = (n1 * cos(angle) - n2 * cos(angle2))/(n1 * cos(angle) + n2 * cos(angle2))
+		transmissionCoef = 2 * n1 * cos(angle)/(n1 * cos(angle) + n2 * cos(angle2))
