@@ -7,13 +7,13 @@ extends Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	interfaceController.notifyList.append(self)
-
+	
 
 func _notify() -> void:
-	if interfaceController.n1 > interfaceController.n2:
-		text = str("  θc : %1.2f  " % rad_to_deg(asin(interfaceController.n2/interfaceController.n1)))
+	if interfaceController.parallel:
+		text = str("θB : %1.2f" % rad_to_deg(atan(interfaceController.n2/interfaceController.n1)))
 	else:
-		text = "  θc : ----  "
+		text = "θB : -"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

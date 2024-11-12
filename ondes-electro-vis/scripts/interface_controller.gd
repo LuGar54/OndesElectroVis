@@ -1,8 +1,10 @@
 extends PanelContainer
+
 var n1: float = 1
 var n2: float = 1
 var angle: float = 0
 var angle2: float = 0
+var parallel: bool = true
 
 var notifyList = []
 
