@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbg43cvidifpb"]
+[gd_scene load_steps=20 format=3 uid="uid://cbg43cvidifpb"]
 
 [ext_resource type="Script" path="res://scripts/interface_controller.gd" id="1_0jwpw"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="1_l21o3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://c3iyn2xnwpnxu" path="res://materials/TransmittedMat.tres" id="3_uux5p"]
 [ext_resource type="Material" uid="uid://dk2667qppc6hi" path="res://materials/IncidentMat2.tres" id="6_yksp5"]
 [ext_resource type="Material" uid="uid://clxr0a3ey6roa" path="res://materials/ReflectedMat.tres" id="9_dyqg8"]
+[ext_resource type="Script" path="res://scripts/reflected.gd" id="9_pk23d"]
 
 [sub_resource type="Theme" id="Theme_y7a5j"]
 default_font_size = 42
@@ -140,7 +141,9 @@ interfaceController = NodePath("../InterfaceController")
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, -2.5)
 mesh = SubResource("BoxMesh_6yjg2")
 
-[node name="Reflected" type="Node3D" parent="."]
+[node name="Reflected" type="Node3D" parent="." node_paths=PackedStringArray("interfaceController")]
+script = ExtResource("9_pk23d")
+interfaceController = NodePath("../InterfaceController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Reflected"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 2.5)
