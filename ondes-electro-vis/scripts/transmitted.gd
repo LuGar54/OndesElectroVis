@@ -6,10 +6,6 @@ extends Node3D
 func _ready() -> void:
 	interfaceController.notifyList.append(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func _notify() -> void:
 	rotation.y = interfaceController.angle2

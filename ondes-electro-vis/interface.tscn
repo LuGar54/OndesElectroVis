@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://scripts/angle_critique.gd" id="2_kjc5f"]
 [ext_resource type="Script" path="res://scripts/transmitted.gd" id="3_ebqh8"]
 [ext_resource type="Script" path="res://scripts/angle_brewster.gd" id="3_tbty1"]
-[ext_resource type="Material" uid="uid://c3iyn2xnwpnxu" path="res://materials/TransmittedMat.tres" id="3_uux5p"]
 [ext_resource type="Material" uid="uid://dk2667qppc6hi" path="res://materials/IncidentMat2.tres" id="6_yksp5"]
+[ext_resource type="Material" uid="uid://djm4q6drwxlxm" path="res://materials/TransmittedMat2.tres" id="8_jefhd"]
 [ext_resource type="Material" uid="uid://clxr0a3ey6roa" path="res://materials/ReflectedMat.tres" id="9_dyqg8"]
 [ext_resource type="Script" path="res://scripts/reflected.gd" id="9_pk23d"]
 
@@ -42,7 +42,7 @@ material = SubResource("StandardMaterial3D_quh4h")
 material = ExtResource("6_yksp5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_6yjg2"]
-material = ExtResource("3_uux5p")
+material = ExtResource("8_jefhd")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nrrku"]
 load_path = "res://.godot/imported/tigerStripes.png-536b5d118f320b13db6696320b9a47e8.s3tc.ctex"
@@ -80,6 +80,14 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme = SubResource("Theme_y7a5j")
 alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="InterfaceController/MarginContainer/HBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "//"
+popup/item_1/text = "⊥"
+popup/item_1/id = 1
 
 [node name="N1" type="LineEdit" parent="InterfaceController/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -150,6 +158,7 @@ transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 2.5)
 material_override = ExtResource("9_dyqg8")
 mesh = SubResource("BoxMesh_alok7")
 
+[connection signal="item_selected" from="InterfaceController/MarginContainer/HBoxContainer/OptionButton" to="InterfaceController" method="_on_option_button_item_selected"]
 [connection signal="text_changed" from="InterfaceController/MarginContainer/HBoxContainer/N1" to="InterfaceController" method="_on_n_1_text_changed"]
 [connection signal="text_changed" from="InterfaceController/MarginContainer/HBoxContainer/N2" to="InterfaceController" method="_on_n_2_text_changed"]
 [connection signal="text_changed" from="InterfaceController/MarginContainer/HBoxContainer/Angle" to="InterfaceController" method="_on_angle_text_changed"]

@@ -11,3 +11,4 @@ func _ready() -> void:
 
 func _notify() -> void:
 	rotation.y = -interfaceController.angle
+	scale.x = (interfaceController.n1 * cos(interfaceController.angle2) - interfaceController.n2 * cos(interfaceController.angle))/(interfaceController.n1 * cos(interfaceController.angle2) + interfaceController.n2 * cos(interfaceController.angle))
