@@ -16,4 +16,9 @@ func _process(delta: float) -> void:
 
 
 func _notify() -> void:
+	if interfaceController.parallel:
+		rotation.z = 0
+	else:
+		rotation.z = PI/2
+
 	rotation.y = interfaceController.angle
