@@ -13,8 +13,12 @@ config_version=5
 config/name="Ondes Electro Vis"
 run/main_scene="res://interface.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
 
 [autoload]
 
 InterfaceController="*res://scripts/interface_controller.gd"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

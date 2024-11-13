@@ -50,7 +50,6 @@ material = ExtResource("6_yksp5")
 material = ExtResource("8_jefhd")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nrrku"]
-load_path = "res://.godot/imported/tigerStripes.png-536b5d118f320b13db6696320b9a47e8.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_week2"]
 albedo_color = Color(1, 1, 0, 1)
@@ -95,12 +94,14 @@ interfaceController = NodePath("../../../../InterfaceController")
 
 [node name="Reflection" type="Label" parent="TopRightPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("interfaceController")]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.696871, 0.797806, 1, 1)
 text = "Γ : -"
 script = ExtResource("3_vybvt")
 interfaceController = NodePath("../../../../InterfaceController")
 
 [node name="Transmission" type="Label" parent="TopRightPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("interfaceController")]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.784314, 1, 0.784314, 1)
 text = " τ : -"
 script = ExtResource("4_vnm5n")
 interfaceController = NodePath("../../../../InterfaceController")
@@ -160,9 +161,11 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("BoxMesh_q48vr")
 
 [node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
 script = ExtResource("1_l21o3")
 
 [node name="vertical" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/vertical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3103)
@@ -172,7 +175,11 @@ script = ExtResource("2_hojcc")
 interfaceController = NodePath("../InterfaceController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Incident"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 2.5)
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 6, 0, 0, 3)
+mesh = SubResource("BoxMesh_n65bb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Incident"]
+transform = Transform3D(-1, 8.74228e-10, 0, -8.74228e-08, -0.01, 0, 0, 0, 6, 0, 0, 3)
 mesh = SubResource("BoxMesh_n65bb")
 
 [node name="Transmitted" type="Node3D" parent="." node_paths=PackedStringArray("interfaceController")]
@@ -180,7 +187,11 @@ script = ExtResource("3_ebqh8")
 interfaceController = NodePath("../InterfaceController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Transmitted"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, -2.5)
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 6, 0, 0, -3)
+mesh = SubResource("BoxMesh_6yjg2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Transmitted"]
+transform = Transform3D(-1, 8.74228e-10, 0, -8.74228e-08, -0.01, 0, 0, 0, 6, 0, 0, -3)
 mesh = SubResource("BoxMesh_6yjg2")
 
 [node name="Reflected" type="Node3D" parent="." node_paths=PackedStringArray("interfaceController")]
@@ -188,11 +199,27 @@ script = ExtResource("9_pk23d")
 interfaceController = NodePath("../InterfaceController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Reflected"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 2.5)
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 6, 0, 0, 3)
 material_override = ExtResource("9_dyqg8")
 mesh = SubResource("BoxMesh_alok7")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Reflected"]
+transform = Transform3D(-1, 8.74228e-10, 0, -8.74228e-08, -0.01, 0, 0, 0, 6, 0, 0, 3)
+material_override = ExtResource("9_dyqg8")
+mesh = SubResource("BoxMesh_alok7")
+skeleton = NodePath("../MeshInstance3D")
+
+[connection signal="mouse_entered" from="InterfaceController" to="CameraController" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InterfaceController" to="CameraController" method="_on_mouse_exited"]
 [connection signal="item_selected" from="InterfaceController/MarginContainer/HBoxContainer/OptionButton" to="InterfaceController" method="_on_option_button_item_selected"]
+[connection signal="mouse_entered" from="InterfaceController/MarginContainer/HBoxContainer/OptionButton" to="CameraController" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InterfaceController/MarginContainer/HBoxContainer/OptionButton" to="CameraController" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InterfaceController/MarginContainer/HBoxContainer/N1" to="CameraController" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InterfaceController/MarginContainer/HBoxContainer/N1" to="CameraController" method="_on_mouse_exited"]
 [connection signal="text_changed" from="InterfaceController/MarginContainer/HBoxContainer/N1" to="InterfaceController" method="_on_n_1_text_changed"]
+[connection signal="mouse_entered" from="InterfaceController/MarginContainer/HBoxContainer/N2" to="CameraController" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InterfaceController/MarginContainer/HBoxContainer/N2" to="CameraController" method="_on_mouse_exited"]
 [connection signal="text_changed" from="InterfaceController/MarginContainer/HBoxContainer/N2" to="InterfaceController" method="_on_n_2_text_changed"]
+[connection signal="mouse_entered" from="InterfaceController/MarginContainer/HBoxContainer/Angle" to="CameraController" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InterfaceController/MarginContainer/HBoxContainer/Angle" to="CameraController" method="_on_mouse_exited"]
 [connection signal="text_changed" from="InterfaceController/MarginContainer/HBoxContainer/Angle" to="InterfaceController" method="_on_angle_text_changed"]
